@@ -1,0 +1,48 @@
+﻿
+
+
+
+<body>
+    <div>
+        <div class="row">
+            <div class="col-md-8">
+                <section class="card">
+                    <h1>Enter URL</h1>
+                    <form>
+                        <div class="md-input-group"><label class="form-label md-input-label"></label><input type="text" id="UrlTextInput" class="form-control md-input" placeholder="Enter URL here" /></div>
+                        <button class="btn btn-primary" style="margin-top: 20px" Id="buttonShortUrl">Shorten URL</button>
+                    </form>
+                    <div class="row">
+                        <div class="col"><small><b>New URL : </b><span id="shortUrl"></span></small></div>
+                    </div>
+
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+
+@section Scripts
+{
+   
+    <script >
+
+        // posts the input from the text box to the gen controller the string to be shortend
+
+        $('#buttonShortUrl').on("click",
+            function() {
+                var longUrl = $('#UrlTextInput').val();
+           $.post("/Home/GenarateShortURL", { longUrl: longUrl },
+                    function (data) {
+                     console.log(data);
+               },'json');
+           });
+        
+      
+
+
+    </script>
+
+
+
+}
