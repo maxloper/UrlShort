@@ -18,10 +18,12 @@ namespace UrlShortshort.Controllers
         // DB context
         private readonly ApplicationDbContext _db;
 
-        const string urlsafe = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789";
+
+        // the allowed letters from a string picked at random for the short url
+        const string allowedUrlString = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789";
 
 
-        // DI for the Db context
+        // Dependency injection for the Db context
 
         public HomeController(ApplicationDbContext db)
         {
@@ -33,6 +35,8 @@ namespace UrlShortshort.Controllers
             return View();
         }
 
+
+        // converters the Long url to a random shorter URL
         public ActionResult GenarateShortURL(string longUrl)
         {
 
@@ -59,7 +63,7 @@ namespace UrlShortshort.Controllers
 
         public string GenerateCode()
         {
-            return urlsafe.Substring(new Random().Next(0, urlsafe.Length), new Random().Next(2, 6));
+            return allowedUrlString.Substring(new Random().Next(0, allowedUrlString.Length), new Random().Next(2, 6));
         }
     }
 }
